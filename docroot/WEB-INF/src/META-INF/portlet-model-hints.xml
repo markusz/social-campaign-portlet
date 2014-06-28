@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.Event">
+		<field name="eventId" type="long" />
+		<field name="facebookEventId" type="String" />
+		<field name="correspondingGoogleEventId" type="String" />
+		<field name="correspondingGoogleEventCalendarId" type="String" />
+		<field name="title" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="startingTime" type="Date" />
+		<field name="endingTime" type="Date" />
+		<field name="locationAsString" type="String">
+			<hint name="max-length">400</hint>
+		</field>
+		<field name="locationLatitude" type="double" />
+		<field name="locationLongitude" type="double" />
+		<field name="registeredCount" type="long" />
+		<field name="creatorId" type="long" />
+		<field name="categoryId" type="long" />
+		<field name="isOfficial" type="boolean" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.AssistenceRequest">
+		<field name="eventId" type="long" />
+		<field name="roleId" type="long" />
+		<field name="quantity" type="int" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.EventAssistence">
+		<field name="eventId" type="long" />
+		<field name="roleId" type="long" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.AssistenceRole">
+		<field name="roleId" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.AnonymAssistence">
+		<field name="eventId" type="long" />
+		<field name="roleId" type="long" />
+		<field name="quantity" type="long" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.Category">
+		<field name="categoryId" type="long" />
+		<field name="categoryName" type="String">
+			<hint name="max-length">400</hint>
+		</field>
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.EventCreator">
+		<field name="eventId" type="long" />
+		<field name="userProfileId" type="long" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.EventAttendence">
+		<field name="eventId" type="long" />
+		<field name="userProfileId" type="long" />
+		<field name="correspondingGoogleEvent" type="String">
+			<hint name="max-length">400</hint>
+		</field>
+		<field name="correspondingGoogleCalendarId" type="String" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.FacebookCredentials">
+		<field name="userId" type="long" />
+		<field name="accessToken" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="tokenExpirationDate" type="Date" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.GoogleCredentials">
+		<field name="userId" type="long" />
+		<field name="googleAccountId" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="refreshToken" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="accessToken" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="tokenExpirationDate" type="Date" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.Donation">
+		<field name="donationId" type="long" />
+		<field name="donationAmount" type="double" />
+		<field name="donationDate" type="Date" />
+		<field name="donatorId" type="long" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.News">
+		<field name="newsId" type="long" />
+		<field name="newsTypeId" type="long" />
+		<field name="title" type="String" />
+		<field name="link" type="String" />
+		<field name="content" type="String">
+			<hint name="max-length">5000</hint>
+		</field>
+		<field name="publishDate" type="Date" />
+		<field name="publisherId" type="long" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.NewsType">
+		<field name="newsTypeId" type="long" />
+		<field name="newsType" type="String" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.GeneralSettings">
+		<field name="userProfileId" type="long" />
+		<field name="displayName" type="String" />
+		<field name="inofficialEventsSearchRadius" type="int" />
+		<field name="homebase" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="homebaseLatitude" type="double" />
+		<field name="homebaseLongitude" type="double" />
+	</model>
+	<model name="de.tum.in.ziller.thesis.social_campaign.model.SocialSettings">
+		<field name="userProfileId" type="long" />
+		<field name="autoPublishOnFacebook" type="boolean" />
+		<field name="autoPublishOnGoogle" type="boolean" />
+		<field name="standardCalendarId" type="String" />
+	</model>
+</model-hints>

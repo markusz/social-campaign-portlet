@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-
+
+service-builder_6_0_0.dtd">
+
+<service-builder package-path="de.tum.in.ziller.thesis.social_campaign">
+	<author>Markus Ziller</author>
+	<namespace>zsc</namespace>
+
+<entity name="Event" human-name="Event" local-service="true" remote-service="false" cache-enabled="false">
+		
+		<column name="eventId" id-type="increment" primary="true" type="long" />
+		<column name="facebookEventId" type="String" />
+		<column name="correspondingGoogleEventId" type="String" />
+		<column name="correspondingGoogleEventCalendarId" type="String" />
+		<column name="title" type="String" />
+		<column name="description" type="String" />
+		<column name="startingTime" db-name="start" type="Date" />
+		<column name="endingTime" db-name="end" type="Date" />
+		<column name="locationAsString" db-name="location" type="String" />
+		<column name="locationLatitude" type="double" />
+		<column name="locationLongitude" type="double" />
+		<column name="registeredCount" type="long" />
+		<column name="creatorId" type="long" />
+		<column name="categoryId" type="long" />
+		<column name="isOfficial" type="boolean" />
+		
+		<order by="asc">
+			<order-column name="startingTime" />
+			<order-column name="title" />
+		</order>
+		
+		<finder name="Creator" return-type="Collection">
+			<finder-column name="creatorId" />
+		</finder>
+		
+		<finder name="Title" return-type="Collection">
+			<finder-column name="title" case-sensitive="false"/>
+		</finder>
+		
+		<finder name="TitleLike" return-type="Collection">
+			<finder-column name="title" comparator="LIKE" case-sensitive="false"/>
+		</finder>
+		
+		<finder name="EventId" return-type="Event">
+			<finder-column name="eventId" />
+		</finder>
+		
+		<finder name="isOfficial" return-type="Collection">
+			<finder-column name="isOfficial" />
+		</finder>
+		
+		<finder name="StartingDateLaterThenAndIsOfficial" return-type="Collection">
+			<finder-column name="isOfficial" />
+			<finder-column name="startingTime" comparator="&gt;="/>
+		</finder>
+		
+		<reference package-path="com.liferay.portal" entity="User" />
+	
+</entity>
+<entity name="AssistenceRequest" local-service="true" remote-service="false" >
+		<column name="eventId" primary="true" type="long" />
+		<column name="roleId" primary="true" type="long" />
+		<column name="quantity" type="int" />
+		
+		<finder name="EventId" return-type="Collection">
+			<finder-column name="eventId" />
+		</finder>
+</entity>
+<entity name="EventAssistence" local-service="true" remote-service="false" >
+		<column name="eventId" primary="true" type="long" />
+		<column name="roleId" primary="true" type="long" />
+		<column name="userId" primary="true" type="long" />
+		
+		<finder name="EventIdAndRoleId" return-type="Collection">
+			<finder-column name="eventId" />
+			<finder-column name="roleId"/>
+		</finder>
+		
+		<finder name="EventIdAndUserId" return-type="Collection">
+			<finder-column name="eventId" />
+			<finder-column name="userId"/>
+		</finder>
+		
+		<finder name="UserIdAndRoleId" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="roleId"/>
+		</finder>
+		
+		<finder name="EventId" return-type="Collection">
+			<finder-column name="eventId" />
+		</finder>
+		
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId"/>
+		</finder>
+		
+		<finder name="RoleId" return-type="Collection">
+			<finder-column name="roleId"/>
+		</finder>
+</entity>
+<entity name="AssistenceRole" local-service="true" remote-service="false" >
+		<column name="roleId" primary="true" type="long" />
+		<column name="name" type="String" />
+</entity>
+
+<entity name="AnonymAssistence" local-service="true" remote-service="false" >
+		<column name="eventId" primary="true" type="long" />
+		<column name="roleId" primary="true" type="long" />
+		
+		<column name="quantity" type="long" />
+		
+		<finder name="EventIdAndRoleId" return-type="Collection">
+			<finder-column name="eventId" />
+			<finder-column name="roleId"/>
+		</finder>
+</entity>
+
+<entity name="Category" local-service="true" remote-service="false" >
+		<column name="categoryId" primary="true" type="long" />
+		<column name="categoryName" type="String" />
+		
+		<column name="eventsWithCategory" type="Collection" entity="Event" mapping-key="eventId"/>
+</entity>
+
+<entity name="EventCreator" human-name="Event Creator" local-service="true" remote-service="false" >
+		<column name="eventId" primary="true" type="long" />
+		<column name="userProfileId" primary="true" type="long" />
+		
+		<reference package-path="com.liferay.portal" entity="User" />
+<!-- 		<column name="events" type="Collection" entity="Event" mapping-key="eventId"/> -->
+</entity>
+
+<entity name="EventAttendence" human-name="Event Attendence" local-service="true" remote-service="false" >
+		<column name="eventId" primary="true" type="long" />
+		<column name="userProfileId" primary="true" type="long" />
+		<column name="correspondingGoogleEvent"  type="String" />
+		<column name="correspondingGoogleCalendarId"  type="String" />
+		
+		<finder name="userId" return-type="Collection">
+			<finder-column name="userProfileId" />
+		</finder>
+		
+		<finder name="eventId" return-type="Collection">
+			<finder-column name="eventId" />
+		</finder>
+		
+		<reference package-path="com.liferay.portal" entity="User" />
+</entity>
+
+<entity name="FacebookCredentials" local-service="true" remote-service="false" >
+		<column name="userId" primary="true" type="long" />
+		<column name="accessToken" type="String" />
+		<column name="tokenExpirationDate" db-name="expires" type="Date" />
+</entity>
+
+<entity name="GoogleCredentials" local-service="true" remote-service="false" >
+		<column name="userId" primary="true" type="long" />
+		<column name="googleAccountId" type="String" />
+		<column name="refreshToken" type="String" />
+		<column name="accessToken" type="String" />
+		<column name="tokenExpirationDate" db-name="expires" type="Date" />
+</entity>
+
+<entity name="Donation" local-service="true" remote-service="false" >
+		<column name="donationId" type="long" primary="true" id-type="increment" />
+		<column name="donationAmount" db-name="amount" type="double" />
+		<column name="donationDate" type="Date" />
+		<column name="donatorId" type="long" />
+		
+		<finder name="donatorId" return-type="Collection">
+			<finder-column name="donatorId" />
+		</finder>
+		
+		<reference package-path="com.liferay.portal" entity="User" />
+</entity>
+<entity name="News" local-service="true" remote-service="false" >
+		<column name="newsId" type="long" primary="true" id-type="increment" />
+		<column name="newsTypeId" type="long" />
+		<column name="title" type="String" />
+		<column name="link" type="String" />
+		<column name="content" type="String" />
+		<column name="publishDate" type="Date" />
+		<column name="publisherId" type="long" />
+		
+		<order by="desc">
+			<order-column name="publishDate" />
+		</order>
+</entity>
+<entity name="NewsType" local-service="true" remote-service="false" >
+		<column name="newsTypeId" type="long" primary="true" id-type="increment" />
+		<column name="newsType" type="String" />
+</entity>
+<entity name="GeneralSettings" local-service="true" remote-service="false" >
+
+		<column name="userProfileId" type="long" primary="true" />
+		<column name="displayName" type="String" />
+		<column name="inofficialEventsSearchRadius" type="int" />
+		<column name="homebase" type="String"/>
+		<column name="homebaseLatitude" type="double" />
+		<column name="homebaseLongitude" type="double" />
+		
+</entity>
+<entity name="SocialSettings" local-service="true" remote-service="false" >
+
+		<column name="userProfileId" type="long" primary="true" />
+		<column name="autoPublishOnFacebook" type="boolean" />
+		<column name="autoPublishOnGoogle" type="boolean" />
+		<column name="standardCalendarId" type="String"/>
+</entity>
+</service-builder> 

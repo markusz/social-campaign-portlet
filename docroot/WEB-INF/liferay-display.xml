@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.0.0//EN" "http://www.liferay.com/dtd/liferay-display_6_0_0.dtd">
+
+<display>
+	<category name="social-campaign">
+		<portlet id="social-campaign" />
+		<portlet id="inofficialeventsportlet"></portlet>
+		<portlet id="findassistanceportlet"></portlet>
+		<portlet id="donationportlet"></portlet>
+		<portlet id="generalsettingsportlet"></portlet>
+		<portlet id="discussionportlet"></portlet>
+		<portlet id="newsportlet"></portlet>
+		<portlet id="officialeventsportlet"></portlet>
+		<portlet id="socialsettingsportlet"></portlet>
+	</category>
+	<category name="category.sample">
+		<portlet id="facebookoauthportlet"></portlet>
+		<portlet id="googleoauthportlet"></portlet>
+	</category>
+</display>

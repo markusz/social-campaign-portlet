@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/spring-webmvc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/json-simple-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/spring-webmvc-portlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/guava-10.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-http-client-extensions-1.5.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-oauth-client-1.5.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/restfb-1.6.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/gson-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-http-client-1.5.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/org.apache.httpcomponents.httpclient_4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-api-client-extensions-1.5.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-api-client-1.5.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/jackson-all-1.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/docroot/WEB-INF/lib/google-oauth-client-extensions-1.5.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
+
+<routes>
+	 <!-- <route>
+		<pattern>/{p_p_state}/{jsp}/{eventId:\d+}/</pattern>
+	</route>
+	<route>
+		<pattern>/{p_p_state}/{jsp}/</pattern>
+	</route> -->
+	<!-- <route>
+		<pattern>/{javax.portlet.action}/{event_id:\d+}/</pattern>
+		<ignored-parameter name="p_p_lifecycle" />
+	</route> -->
+</routes>

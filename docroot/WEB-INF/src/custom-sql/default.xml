@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<costum-sql>
+
+<sql id="findEventsInRange">
+<![CDATA[
+
+SELECT ((ACOS(SIN(e.locationLatitude * PI() / 180) * SIN(? * PI() / 180) + 
+         COS(e.locationLatitude * PI() / 180) * COS(? * PI() / 180) * COS((e.locationLongitude - ?) * 
+         PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) AS distance, e.*
+FROM zsc_event e WHERE e.start>CURRENT_TIMESTAMP() AND isOfficial=0
+HAVING distance<=? ORDER BY e.start ASC
+
+]]>
+</sql>
+
+<sql id="findUpcomingEventsInRangeThatNeedAssistence">
+<![CDATA[
+
+SELECT 
+	e.eventId, 
+	SUM(quantity)-(select count(*) from zsc_eventassistence where eventId=ar.eventId) as total, 
+	((ACOS(SIN(e.locationLatitude * PI() / 180) * SIN(? * PI() / 180) + 
+         COS(e.locationLatitude * PI() / 180) * COS(? * PI() / 180) * COS((e.locationLongitude - ?) * 
+         PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) AS distance 
+FROM 
+	zsc_assistencerequest ar, 
+	zsc_event e 
+WHERE 
+	ar.eventId=e.eventId 
+	AND 
+	e.start>CURRENT_TIMESTAMP() 
+GROUP BY
+	(ar.eventId) 
+HAVING 
+	total > 0 
+	AND 
+	distance < ?
+ORDER BY e.start ASC
+
+]]>
+</sql>
+
+</costum-sql>
